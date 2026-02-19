@@ -1,4 +1,6 @@
-# AI Agriculture Suite - Dependencies
+pydantic>=2.5.0
+streamlit>=1.30.0
+# python-multipart>=0.0.9 # Optional if not using FastAPI uploads
 
 # Backend Framework
 fastapi>=0.109.0
