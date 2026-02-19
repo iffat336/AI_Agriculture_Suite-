@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropMind AI - Intelligent Farming Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="/frontend/styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon-wrapper">
+                        <span class="logo-icon">🌱</span>
+                        <span class="logo-pulse"></span>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">CropMind</span>
+                        <span class="logo-tag">AI Platform</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-label">Analytics</div>
+                <button class="nav-item active" data-page="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                    <span class="nav-badge">Live</span>
+                </button>
+                <button class="nav-item" data-page="yield">
+                    <span class="nav-icon">🌾</span>
+                    <span>Yield Predictor</span>
+                </button>
+                <button class="nav-item" data-page="disease">
+                    <span class="nav-icon">🔬</span>
+                    <span>Disease Scanner</span>
+                </button>
+                <button class="nav-item" data-page="pest">
+                    <span class="nav-icon">🛡️</span>
+                    <span>Pest Shield</span>
+                </button>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-label">Management</div>
+                <button class="nav-item" data-page="irrigation">
+                    <span class="nav-icon">💧</span>
+                    <span>HydroSense</span>
+                </button>
+                <button class="nav-item" data-page="market">
+                    <span class="nav-icon">📈</span>
+                    <span>Market Intel</span>
+                </button>
+                <button class="nav-item" data-page="map">
+                    <span class="nav-icon">🗺️</span>
+                    <span>Field Map</span>
+                </button>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-label">AI Assistant</div>
+                <button class="nav-item" data-page="chatbot">
+                    <span class="nav-icon">🤖</span>
+                    <span>CropBot</span>
+                    <span class="nav-badge green">Online</span>
+                </button>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="user-avatar">👨‍🌾</div>
+                    <div class="user-info">
+                        <span class="user-name">Farm Manager</span>
+                        <span class="user-role">Premium Plan</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="page-dashboard" class="page active">
+                <header class="page-header">
+                    <div class="header-left">
+                        <h1>Farm Intelligence Dashboard</h1>
+                        <p class="header-subtitle">Real-time insights powered by AI</p>
+                    </div>
+                    <div class="header-right">
+                        <div class="weather-card">
+                            <div class="weather-main">
+                                <span class="weather-icon">☀️</span>
+                                <span class="weather-temp">28°C</span>
+                            </div>
+                            <div class="weather-details">
+                                <span>Humidity: 65%</span>
+                                <span>Wind: 12 km/h</span>
+                            </div>
+                        </div>
+                        <div class="header-date" id="current-date"></div>
+                    </div>
+                </header>
+
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card gradient-green">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-value" data-target="847">0</span>
+                            <span class="metric-label">Hectares Monitored</span>
+                        </div>
+                        <div class="metric-trend up">
+                            <span>↑ 12%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card gradient-blue">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-value" data-target="94">0</span>
+                            <span class="metric-label">Crop Health Score</span>
+                        </div>
+                        <div class="metric-trend up">
+                            <span>↑ 5%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card gradient-orange">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-value" data-target="23">0</span>
+                            <span class="metric-label">Active Alerts</span>
+                        </div>
+                        <div class="metric-trend down">
+                            <span>↓ 8%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card gradient-purple">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-value currency" data-target="156">0</span>
+                            <span class="metric-label">Revenue (K USD)</span>
+                        </div>
+                        <div class="metric-trend up">
+                            <span>↑ 18%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-grid">
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3>📈 Yield Forecast</h3>
+                            <div class="card-actions">
+                                <button class="btn-sm active">Weekly</button>
+                                <button class="btn-sm">Monthly</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="yieldChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3>🌡️ Environmental Conditions</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="envChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infographics Row -->
+                <div class="infographics-grid">
+                    <!-- Crop Distribution -->
+                    <div class="card infographic-card">
+                        <div class="card-header">
+                            <h3>🌾 Crop Distribution</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="donut-chart-container">
+                                <canvas id="cropChart"></canvas>
+                                <div class="donut-center">
+                                    <span class="donut-value">8</span>
+                                    <span class="donut-label">Crops</span>
+                                </div>
+                            </div>
+                            <div class="chart-legend" id="cropLegend"></div>
+                        </div>
+                    </div>
+
+                    <!-- Health Gauges -->
+                    <div class="card infographic-card">
+                        <div class="card-header">
+                            <h3>🏥 Farm Health Status</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="gauges-grid">
+                                <div class="gauge-item">
+                                    <div class="gauge" data-value="92" data-color="#10b981">
+                                        <svg viewBox="0 0 100 100">
+                                            <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                                            <circle class="gauge-fill" cx="50" cy="50" r="40"/>
+                                        </svg>
+                                        <span class="gauge-value">92%</span>
+                                    </div>
+                                    <span class="gauge-label">Soil Health</span>
+                                </div>
+                                <div class="gauge-item">
+                                    <div class="gauge" data-value="78" data-color="#3b82f6">
+                                        <svg viewBox="0 0 100 100">
+                                            <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                                            <circle class="gauge-fill" cx="50" cy="50" r="40"/>
+                                        </svg>
+                                        <span class="gauge-value">78%</span>
+                                    </div>
+                                    <span class="gauge-label">Water Level</span>
+                                </div>
+                                <div class="gauge-item">
+                                    <div class="gauge" data-value="85" data-color="#f59e0b">
+                                        <svg viewBox="0 0 100 100">
+                                            <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                                            <circle class="gauge-fill" cx="50" cy="50" r="40"/>
+                                        </svg>
+                                        <span class="gauge-value">85%</span>
+                                    </div>
+                                    <span class="gauge-label">Crop Vigor</span>
+                                </div>
+                                <div class="gauge-item">
+                                    <div class="gauge" data-value="95" data-color="#8b5cf6">
+                                        <svg viewBox="0 0 100 100">
+                                            <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                                            <circle class="gauge-fill" cx="50" cy="50" r="40"/>
+                                        </svg>
+                                        <span class="gauge-value">95%</span>
+                                    </div>
+                                    <span class="gauge-label">AI Accuracy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card infographic-card">
+                        <div class="card-header">
+                            <h3>⚡ Quick Actions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="action-grid">
+                                <button class="action-card" onclick="showPage('yield')">
+                                    <div class="action-icon gradient-green">🌾</div>
+                                    <span>Predict Yield</span>
+                                </button>
+                                <button class="action-card" onclick="showPage('disease')">
+                                    <div class="action-icon gradient-red">🔬</div>
+                                    <span>Scan Disease</span>
+                                </button>
+                                <button class="action-card" onclick="showPage('irrigation')">
+                                    <div class="action-icon gradient-blue">💧</div>
+                                    <span>Water Check</span>
+                                </button>
+                                <button class="action-card" onclick="showPage('chatbot')">
+                                    <div class="action-icon gradient-purple">🤖</div>
+                                    <span>Ask CropBot</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity & Alerts -->
+                <div class="activity-grid">
+                    <div class="card activity-card">
+                        <div class="card-header">
+                            <h3>🔔 Recent Alerts</h3>
+                            <span class="badge red">3 New</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert-list">
+                                <div class="alert-item warning">
+                                    <span class="alert-icon">⚠️</span>
+                                    <div class="alert-content">
+                                        <span class="alert-title">Low Soil Moisture Detected</span>
+                                        <span class="alert-desc">Zone B - Wheat Field</span>
+                                    </div>
+                                    <span class="alert-time">2 min ago</span>
+                                </div>
+                                <div class="alert-item info">
+                                    <span class="alert-icon">💧</span>
+                                    <div class="alert-content">
+                                        <span class="alert-title">Irrigation Scheduled</span>
+                                        <span class="alert-desc">Zone A - Tomorrow 6 AM</span>
+                                    </div>
+                                    <span class="alert-time">15 min ago</span>
+                                </div>
+                                <div class="alert-item success">
+                                    <span class="alert-icon">✅</span>
+                                    <div class="alert-content">
+                                        <span class="alert-title">Pest Risk: Low</span>
+                                        <span class="alert-desc">All zones secure</span>
+                                    </div>
+                                    <span class="alert-time">1 hour ago</span>
+                                </div>
+                                <div class="alert-item danger">
+                                    <span class="alert-icon">🔴</span>
+                                    <div class="alert-content">
+                                        <span class="alert-title">Disease Detected</span>
+                                        <span class="alert-desc">Leaf blight in Zone C tomatoes</span>
+                                    </div>
+                                    <span class="alert-time">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card tips-card">
+                        <div class="card-header">
+                            <h3>💡 AI Recommendations</h3>
+                        </div>
+                        <div class="card-body" id="tips-container">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Page -->
+            <div id="page-map" class="page">
+                <header class="page-header">
+                    <div>
+                        <h1>🗺️ Field Map & Zones</h1>
+                        <p>Interactive farm monitoring with satellite view</p>
+                    </div>
+                </header>
+
+                <div class="map-container">
+                    <div class="card map-card">
+                        <div class="card-header">
+                            <h3>Farm Overview</h3>
+                            <div class="map-controls">
+                                <button class="btn-sm active" id="mapSatellite">Satellite</button>
+                                <button class="btn-sm" id="mapTerrain">Terrain</button>
+                            </div>
+                        </div>
+                        <div class="card-body map-body">
+                            <div id="farmMap"></div>
+                        </div>
+                    </div>
+
+                    <div class="map-sidebar">
+                        <div class="card zone-card">
+                            <div class="card-header">
+                                <h3>Field Zones</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="zone-list">
+                                    <div class="zone-item" data-zone="A">
+                                        <div class="zone-color green"></div>
+                                        <div class="zone-info">
+                                            <span class="zone-name">Zone A - Wheat</span>
+                                            <span class="zone-status">Healthy • 120 ha</span>
+                                        </div>
+                                        <span class="zone-score">95%</span>
+                                    </div>
+                                    <div class="zone-item" data-zone="B">
+                                        <div class="zone-color yellow"></div>
+                                        <div class="zone-info">
+                                            <span class="zone-name">Zone B - Rice</span>
+                                            <span class="zone-status">Needs Water • 85 ha</span>
+                                        </div>
+                                        <span class="zone-score">72%</span>
+                                    </div>
+                                    <div class="zone-item" data-zone="C">
+                                        <div class="zone-color red"></div>
+                                        <div class="zone-info">
+                                            <span class="zone-name">Zone C - Tomatoes</span>
+                                            <span class="zone-status">Disease Alert • 45 ha</span>
+                                        </div>
+                                        <span class="zone-score">58%</span>
+                                    </div>
+                                    <div class="zone-item" data-zone="D">
+                                        <div class="zone-color green"></div>
+                                        <div class="zone-info">
+                                            <span class="zone-name">Zone D - Maize</span>
+                                            <span class="zone-status">Excellent • 100 ha</span>
+                                        </div>
+                                        <span class="zone-score">98%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card legend-card">
+                            <div class="card-header">
+                                <h3>Map Legend</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="legend-items">
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background: #10b981;"></span>
+                                        <span>Healthy (80-100%)</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background: #f59e0b;"></span>
+                                        <span>Attention (60-79%)</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background: #ef4444;"></span>
+                                        <span>Critical (&lt;60%)</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background: #3b82f6;"></span>
+                                        <span>Water Bodies</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yield Predictor Page -->
+            <div id="page-yield" class="page">
+                <header class="page-header">
+                    <div>
+                        <h1>🌾 AI Yield Predictor</h1>
+                        <p>Machine learning powered crop yield forecasting</p>
+                    </div>
+                </header>
+
+                <div class="predictor-grid">
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <h3>Input Parameters</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="yield-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Crop Type</label>
+                                        <select name="crop" required>
+                                            <option value="wheat">🌾 Wheat</option>
+                                            <option value="rice">🌾 Rice</option>
+                                            <option value="maize">🌽 Maize</option>
+                                            <option value="cotton">☁️ Cotton</option>
+                                            <option value="tomato">🍅 Tomato</option>
+                                            <option value="potato">🥔 Potato</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Farm Area (hectares)</label>
+                                        <input type="number" name="farm_area_ha" value="2" step="0.1" min="0.1" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Temperature (°C)</label>
+                                        <input type="number" name="temperature" value="25" step="0.1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rainfall (mm)</label>
+                                        <input type="number" name="rainfall" value="100" step="1" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Soil pH</label>
+                                        <input type="number" name="soil_ph" value="6.5" step="0.1" min="4" max="10" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Irrigation Type</label>
+                                        <select name="irrigation_type">
+                                            <option value="drip">💧 Drip</option>
+                                            <option value="sprinkler">💦 Sprinkler</option>
+                                            <option value="flood" selected>🌊 Flood</option>
+                                            <option value="rainfed">🌧️ Rainfed</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Nitrogen (kg/ha)</label>
+                                        <input type="number" name="nitrogen" value="150" step="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phosphorus (kg/ha)</label>
+                                        <input type="number" name="phosphorus" value="50" step="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Potassium (kg/ha)</label>
+                                        <input type="number" name="potassium" value="75" step="1" required>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block btn-glow">
+                                    <span>🔮</span> Predict Yield with AI
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card result-card" id="yield-result" style="display: none;">
+                        <div class="card-header">
+                            <h3>AI Prediction Results</h3>
+                        </div>
+                        <div class="card-body" id="yield-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease Detection Page -->
+            <div id="page-disease" class="page">
+                <header class="page-header">
+                    <div>
+                        <h1>🔬 Disease Scanner</h1>
+                        <p>AI-powered crop disease detection and diagnosis</p>
+                    </div>
+                </header>
+
+                <div class="predictor-grid">
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <h3>Symptom Analysis</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="disease-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Crop Type</label>
+                                        <select name="crop" required>
+                                            <option value="tomato">🍅 Tomato</option>
+                                            <option value="potato">🥔 Potato</option>
+                                            <option value="wheat">🌾 Wheat</option>
+                                            <option value="rice">🌾 Rice</option>
+                                            <option value="maize">🌽 Maize</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Affected Area (%)</label>
+                                        <input type="number" name="affected_area_pct" value="20" min="0" max="100" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Spot Density (0-1)</label>
+                                        <input type="number" name="spot_density" value="0.3" step="0.1" min="0" max="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Leaf Green Level (0-255)</label>
+                                        <input type="number" name="leaf_color_g" value="100" min="0" max="255" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Temperature (°C)</label>
+                                        <input type="number" name="temperature" value="28" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Humidity (%)</label>
+                                        <input type="number" name="humidity" value="75" min="0" max="100" required>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block btn-glow">
+                                    <span>🔬</span> Scan for Diseases
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card result-card" id="disease-result" style="display: none;">
+                        <div class="card-header">
+                            <h3>Diagnosis Results</h3>
+                        </div>
+                        <div class="card-body" id="disease-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pest Prediction Page -->
+            <div id="page-pest" class="page">
+                <header class="page-header">
+                    <div>
+                        <h1>🛡️ Pest Shield</h1>
+                        <p>Predictive pest outbreak monitoring</p>
+                    </div>
+                </header>
+
+                <div class="predictor-grid">
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <h3>Environmental Conditions</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="pest-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Crop Type</label>
+                                        <select name="crop">
+                                            <option value="vegetables">🥬 Vegetables</option>
+                                            <option value="wheat">🌾 Wheat</option>
+                                            <option value="rice">🌾 Rice</option>
+                                            <option value="cotton">☁️ Cotton</option>
+                                            <option value="fruits">🍎 Fruits</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Season</label>
+                                        <select name="season">
+                                            <option value="summer">☀️ Summer</option>
+                                            <option value="monsoon">🌧️ Monsoon</option>
+                                            <option value="winter">❄️ Winter</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Temperature (°C)</label>
+                                        <input type="number" name="temperature" value="28" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Humidity (%)</label>
+                                        <input type="number" name="humidity" value="65" min="0" max="100" required>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block btn-glow">
+                                    <span>🛡️</span> Analyze Pest Risk
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card result-card" id="pest-result" style="display: none;">
+                        <div class="card-header">
+                            <h3>Pest Risk Analysis</h3>
+                        </div>
+                        <div class="card-body" id="pest-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Irrigation Page -->
+            <div id="page-irrigation" class="page">
+                <header class="page-header">
+                    <div>
+                        <h1>💧 HydroSense</h1>
+                        <p>Smart irrigation management system</p>
+                    </div>
+                </header>
+
+                <div class="predictor-grid">
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <h3>Field Conditions</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="irrigation-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Crop Type</label>
+                                        <select name="crop">
+                                            <option value="wheat">🌾 Wheat</option>
+                                            <option value="rice">🌾 Rice</option>
+                                            <option value="maize">🌽 Maize</option>
+                                            <option value="vegetables" selected>🥬 Vegetables</option>
+                                            <option value="cotton">☁️ Cotton</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current Irrigation</label>
+                                        <select name="irrigation_type">
+                                            <option value="drip">💧 Drip</option>
+                                            <option value="sprinkler">💦 Sprinkler</option>
+                                            <option value="flood" selected>🌊 Flood</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Soil Moisture (%)</label>
+                                        <input type="number" name="soil_moisture" value="45" min="0" max="100" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Hours Since Last Irrigation</label>
+                                        <input type="number" name="last_irrigation_hours" value="24" min="0" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Temperature (°C)</label>
+                                        <input type="number" name="temperature" value="30" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Humidity (%)</label>
+                                        <input type="number" name="humidity" value="50" min="0" max="100" required>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block btn-glow">
+                                    <span>💧</span> Get Recommendation
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card result-card" id="irrigation-result" style="display: none;">
+                        <div class="card-header">
+                            <h3>Irrigation Recommendation</h3>
+                        </div>
+                        <div class="card-body" id="irrigation-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Page -->
+            <div id="page-market" class="page">
+                <header class="page-header">
+                    <div>
+                        <h1>📈 Market Intel</h1>
+                        <p>AI-powered commodity price predictions</p>
+                    </div>
+                </header>
+
+                <div class="predictor-grid">
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <h3>Price Prediction</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="market-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Commodity</label>
+                                        <select name="commodity">
+                                            <option value="wheat">🌾 Wheat</option>
+                                            <option value="rice">🌾 Rice</option>
+                                            <option value="maize">🌽 Maize</option>
+                                            <option value="cotton">☁️ Cotton</option>
+                                            <option value="soybean">🫘 Soybean</option>
+                                            <option value="potato">🥔 Potato</option>
+                                            <option value="tomato">🍅 Tomato</option>
+                                            <option value="onion">🧅 Onion</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Prediction Period (Days)</label>
+                                        <input type="number" name="days_ahead" value="7" min="1" max="30" required>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block btn-glow">
+                                    <span>📈</span> Predict Price
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card result-card" id="market-result" style="display: none;">
+                        <div class="card-header">
+                            <h3>Price Prediction</h3>
+                        </div>
+                        <div class="card-body" id="market-result-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chatbot Page -->
+            <div id="page-chatbot" class="page">
+                <header class="page-header">
+                    <div>
+                        <h1>🤖 CropBot AI Assistant</h1>
+                        <p>Your intelligent farming companion</p>
+                    </div>
+                    <div class="bot-status">
+                        <span class="status-dot green"></span>
+                        <span>Online</span>
+                    </div>
+                </header>
+
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="chat-message bot">
+                            <div class="message-avatar bot-avatar">🤖</div>
+                            <div class="message-content">
+                                <div class="message-bubble">
+                                    <p>Hello! I'm <strong>CropBot</strong>, your AI farming assistant. I can help you with:</p>
+                                    <div class="capability-chips">
+                                        <span class="chip">🌾 Crop Advice</span>
+                                        <span class="chip">🔬 Disease Help</span>
+                                        <span class="chip">🧪 Fertilizers</span>
+                                        <span class="chip">🐛 Pest Control</span>
+                                        <span class="chip">💧 Irrigation</span>
+                                    </div>
+                                    <p>How can I assist you today?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <form id="chat-form">
+                            <input type="text" id="chat-input" placeholder="Ask me anything about farming..." autocomplete="off">
+                            <button type="submit" class="btn btn-primary btn-send">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                                </svg>
+                            </button>
+                        </form>
+                        <div class="chat-suggestions">
+                            <button class="suggestion-chip" data-text="How to grow wheat?">How to grow wheat?</button>
+                            <button class="suggestion-chip" data-text="My tomato leaves have yellow spots">Yellow spots on leaves</button>
+                            <button class="suggestion-chip" data-text="Best fertilizer for rice">Fertilizer for rice</button>
+                            <button class="suggestion-chip" data-text="How to control aphids?">Control aphids</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <span class="loader-text">Analyzing...</span>
+        </div>
+    </div>
+
+    <script src="/frontend/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+{
+  "crop_info": {
+    "wheat": {
+      "growing_season": "October to April (Rabi)",
+      "optimal_temperature": "15-25\u00b0C",
+      "water_requirement": "450-650 mm",
+      "soil_type": "Well-drained loamy soil",
+      "ph_range": "6.0-7.5",
+      "major_diseases": [
+        "Rust",
+        "Powdery Mildew",
+        "Leaf Blight"
+      ],
+      "fertilizer_npk": "120:60:40 kg/ha",
+      "yield_potential": "4-6 tons/ha"
+    },
+    "rice": {
+      "growing_season": "June to November (Kharif)",
+      "optimal_temperature": "20-35\u00b0C",
+      "water_requirement": "1200-1400 mm",
+      "soil_type": "Clay or clay loam",
+      "ph_range": "5.5-6.5",
+      "major_diseases": [
+        "Blast",
+        "Bacterial Leaf Blight",
+        "Sheath Rot"
+      ],
+      "fertilizer_npk": "100:50:50 kg/ha",
+      "yield_potential": "5-8 tons/ha"
+    },
+    "maize": {
+      "growing_season": "June to September",
+      "optimal_temperature": "21-30\u00b0C",
+      "water_requirement": "500-800 mm",
+      "soil_type": "Well-drained sandy loam",
+      "ph_range": "5.8-7.0",
+      "major_diseases": [
+        "Leaf Blight",
+        "Downy Mildew",
+        "Stalk Rot"
+      ],
+      "fertilizer_npk": "150:75:40 kg/ha",
+      "yield_potential": "6-10 tons/ha"
+    },
+    "cotton": {
+      "growing_season": "April to December",
+      "optimal_temperature": "21-30\u00b0C",
+      "water_requirement": "700-1200 mm",
+      "soil_type": "Black cotton soil",
+      "ph_range": "6.0-8.0",
+      "major_diseases": [
+        "Bacterial Blight",
+        "Fusarium Wilt",
+        "Root Rot"
+      ],
+      "fertilizer_npk": "80:40:40 kg/ha",
+      "yield_potential": "2-3 tons/ha"
+    },
+    "tomato": {
+      "growing_season": "Year-round (varies by region)",
+      "optimal_temperature": "20-27\u00b0C",
+      "water_requirement": "400-600 mm",
+      "soil_type": "Well-drained sandy loam",
+      "ph_range": "6.0-7.0",
+      "major_diseases": [
+        "Early Blight",
+        "Late Blight",
+        "Mosaic Virus"
+      ],
+      "fertilizer_npk": "100:50:50 kg/ha",
+      "yield_potential": "30-50 tons/ha"
+    },
+    "potato": {
+      "growing_season": "October to March",
+      "optimal_temperature": "15-20\u00b0C",
+      "water_requirement": "500-700 mm",
+      "soil_type": "Light sandy loam",
+      "ph_range": "5.5-6.5",
+      "major_diseases": [
+        "Late Blight",
+        "Early Blight",
+        "Black Scurf"
+      ],
+      "fertilizer_npk": "150:100:100 kg/ha",
+      "yield_potential": "25-40 tons/ha"
+    }
+  },
+  "disease_treatments": {
+    "rust": {
+      "symptoms": "Orange-brown pustules on leaves",
+      "prevention": "Use resistant varieties, proper spacing",
+      "treatment": "Propiconazole or Tebuconazole spray",
+      "dosage": "1ml per liter of water"
+    },
+    "powdery_mildew": {
+      "symptoms": "White powdery growth on leaves",
+      "prevention": "Avoid overhead irrigation, ensure air circulation",
+      "treatment": "Sulfur dust or Karathane spray",
+      "dosage": "2g per liter of water"
+    },
+    "leaf_blight": {
+      "symptoms": "Brown lesions on leaves",
+      "prevention": "Crop rotation, remove infected debris",
+      "treatment": "Mancozeb or Copper oxychloride",
+      "dosage": "2.5g per liter of water"
+    },
+    "bacterial_blight": {
+      "symptoms": "Water-soaked lesions, wilting",
+      "prevention": "Use disease-free seeds, avoid waterlogging",
+      "treatment": "Streptomycin + Copper spray",
+      "dosage": "0.5g + 3g per liter"
+    }
+  },
+  "fertilizer_guide": {
+    "nitrogen_deficiency": {
+      "symptoms": "Yellowing of older leaves, stunted growth",
+      "solution": "Apply urea (46% N) at 50-100 kg/ha",
+      "timing": "Split application recommended"
+    },
+    "phosphorus_deficiency": {
+      "symptoms": "Purple coloration, poor root development",
+      "solution": "Apply DAP or SSP at 50-75 kg/ha",
+      "timing": "At sowing time"
+    },
+    "potassium_deficiency": {
+      "symptoms": "Leaf edge browning, weak stems",
+      "solution": "Apply MOP at 40-60 kg/ha",
+      "timing": "At sowing or first irrigation"
+    }
+  },
+  "pest_control": {
+    "aphids": {
+      "identification": "Small soft-bodied insects, often green or black",
+      "damage": "Suck plant sap, transmit viruses",
+      "organic_control": "Neem oil spray (5ml/L), ladybug release",
+      "chemical_control": "Imidacloprid (0.5ml/L)"
+    },
+    "whiteflies": {
+      "identification": "Tiny white flying insects",
+      "damage": "Suck sap, transmit viruses, honeydew excretion",
+      "organic_control": "Yellow sticky traps, neem spray",
+      "chemical_control": "Thiamethoxam (0.3g/L)"
+    },
+    "caterpillars": {
+      "identification": "Larvae of moths/butterflies",
+      "damage": "Chew leaves and fruits",
+      "organic_control": "Bt spray, hand picking",
+      "chemical_control": "Chlorantraniliprole (0.3ml/L)"
+    }
+  },
+  "irrigation_tips": {
+    "drip_irrigation": {
+      "benefits": "50% water savings, precise application",
+      "suitable_crops": "Vegetables, fruits, cotton",
+      "maintenance": "Clean filters weekly, check emitters"
+    },
+    "sprinkler_irrigation": {
+      "benefits": "Uniform distribution, frost protection",
+      "suitable_crops": "Field crops, lawns",
+      "maintenance": "Check nozzles, avoid wind drift"
+    },
+    "flood_irrigation": {
+      "benefits": "Low initial cost, simple operation",
+      "suitable_crops": "Rice, sugarcane",
+      "efficiency": "40-50% (improve with laser leveling)"
+    }
+  },
+  "weather_advice": {
+    "heat_wave": "Increase irrigation frequency, apply mulch, provide shade for sensitive crops",
+    "frost": "Cover plants, irrigate before frost, use windbreaks",
+    "heavy_rain": "Ensure drainage, apply fungicide preventively, stake tall plants",
+    "drought": "Mulching, reduce planting density, use drought-tolerant varieties"
+  }
+}
