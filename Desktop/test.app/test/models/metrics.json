@@ -1,0 +1,18 @@
+{
+  "r2": 0.93742,
+  "rmse": 0.034133,
+  "mae": 0.027034,
+  "n_train": 3840,
+  "n_test": 960,
+  "architecture": "MLPRegressor(64, 32, 16)",
+  "features_numerical": [
+    "relative_humidity_pct",
+    "temperature_c",
+    "mechanical_loading_kpa",
+    "storage_duration_days",
+    "initial_moisture_pct"
+  ],
+  "features_categorical": [
+    "seed_type"
+  ]
+}

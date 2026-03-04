@@ -1,0 +1,117 @@
+{
+  "sources": [
+    "FAO (1994). Chapter 7: Seed Storage. https://www.fao.org/4/ad232e/AD232E07.htm",
+    "USDA ARS. Storage Conditions for Plant Germplasm. https://www.ars.usda.gov/",
+    "NDSU Extension. Allowable Storage Time for Cereal Grains.",
+    "Ellis & Roberts (1980). Improved Equations for the Prediction of Seed Longevity. Annals of Botany 45(1):13-30.",
+    "Harrington (1972). Seed Storage and Longevity. In: Seed Biology Vol 3."
+  ],
+  "seed_types": {
+    "wheat": {
+      "common_name": "Wheat",
+      "scientific_name": "Triticum aestivum",
+      "classification": "Orthodox",
+      "optimal_storage_temp_c": [-18, 15],
+      "optimal_moisture_content_pct": [10, 14],
+      "optimal_rh_pct": [30, 50],
+      "critical_moisture_pct": 14.5,
+      "max_storage_years_ideal": 10,
+      "long_term_storage_mc": 13.5,
+      "rupture_force_n": [36, 152],
+      "notes": "Wheat seeds are highly storable under proper conditions. Drying to 10-12% MC and storing at -18C extends viability for decades. IBPGR standard for long-term: -18C, 5% MC."
+    },
+    "rice": {
+      "common_name": "Rice",
+      "scientific_name": "Oryza sativa",
+      "classification": "Orthodox",
+      "optimal_storage_temp_c": [-18, 15],
+      "optimal_moisture_content_pct": [11, 13],
+      "optimal_rh_pct": [35, 55],
+      "critical_moisture_pct": 13.0,
+      "max_storage_years_ideal": 8,
+      "long_term_storage_mc": 12.0,
+      "rupture_force_n": [71, 274],
+      "notes": "Rice seed longevity benefits from controlled drying. Rupture force decreases significantly at higher moisture content."
+    },
+    "corn": {
+      "common_name": "Corn/Maize",
+      "scientific_name": "Zea mays",
+      "classification": "Orthodox",
+      "optimal_storage_temp_c": [-18, 10],
+      "optimal_moisture_content_pct": [11, 13],
+      "optimal_rh_pct": [35, 55],
+      "critical_moisture_pct": 13.5,
+      "max_storage_years_ideal": 10,
+      "long_term_storage_mc": 13.5,
+      "rupture_force_n": [288, 403],
+      "notes": "Corn seeds have high mechanical damage resistance. Rupture force increases with moisture content, unlike most other grains."
+    },
+    "soybean": {
+      "common_name": "Soybean",
+      "scientific_name": "Glycine max",
+      "classification": "Orthodox",
+      "optimal_storage_temp_c": [-18, 10],
+      "optimal_moisture_content_pct": [9, 11],
+      "optimal_rh_pct": [30, 40],
+      "critical_moisture_pct": 12.0,
+      "max_storage_years_ideal": 3,
+      "long_term_storage_mc": 11.0,
+      "rupture_force_n": [179, 315],
+      "notes": "Soybeans are relatively short-lived due to high oil content. Store at <10C and <40% RH for best results. Most sensitive to storage conditions among common crops."
+    },
+    "sunflower": {
+      "common_name": "Sunflower",
+      "scientific_name": "Helianthus annuus",
+      "classification": "Orthodox",
+      "optimal_storage_temp_c": [-18, 10],
+      "optimal_moisture_content_pct": [6, 9],
+      "optimal_rh_pct": [20, 40],
+      "critical_moisture_pct": 9.5,
+      "max_storage_years_ideal": 5,
+      "long_term_storage_mc": 8.0,
+      "rupture_force_n": [30, 117],
+      "notes": "High oil content makes sunflower seeds susceptible to lipid oxidation. Requires lower moisture content than cereals for safe storage."
+    },
+    "barley": {
+      "common_name": "Barley",
+      "scientific_name": "Hordeum vulgare",
+      "classification": "Orthodox",
+      "optimal_storage_temp_c": [-18, 15],
+      "optimal_moisture_content_pct": [10, 13],
+      "optimal_rh_pct": [30, 50],
+      "critical_moisture_pct": 13.5,
+      "max_storage_years_ideal": 8,
+      "long_term_storage_mc": 12.0,
+      "rupture_force_n": [94, 162],
+      "notes": "Similar storage behavior to wheat. For malting barley, germinability is critical and more sensitive to storage conditions than viability alone."
+    }
+  },
+  "allowable_storage_days_cereals": {
+    "description": "Maximum days before significant quality loss for cereal grains at given MC and temperature. Source: NDSU Extension.",
+    "moisture_content_pct": [14, 15, 16, 17, 18, 20, 22, 24, 26, 28, 30],
+    "temperatures": {
+      "-1C": [999, 999, 999, 999, 999, 999, 190, 130, 90, 70, 60],
+      "4C":  [999, 999, 999, 280, 200, 90, 60, 40, 35, 30, 25],
+      "10C": [999, 999, 230, 130, 90, 50, 30, 15, 12, 10, 5],
+      "16C": [999, 240, 120, 75, 50, 25, 15, 10, 8, 7, 5],
+      "21C": [200, 125, 70, 45, 30, 14, 8, 6, 5, 4, 3],
+      "27C": [140, 70, 40, 20, 15, 7, 3, 2, 2, 2, 1]
+    }
+  },
+  "co2_monitoring_thresholds": {
+    "description": "CO2 levels in stored grain indicating spoilage. Source: World Grain, OPI Systems.",
+    "levels": [
+      {"range_ppm": [350, 400], "status": "Normal", "interpretation": "Ambient air baseline"},
+      {"range_ppm": [400, 600], "status": "Safe", "interpretation": "Stable grain mass, no biological activity detected"},
+      {"range_ppm": [600, 1200], "status": "Warning", "interpretation": "Onset of mold growth, investigate immediately"},
+      {"range_ppm": [1200, 1500], "status": "Alert", "interpretation": "Active mold infection, mycotoxin risk developing"},
+      {"range_ppm": [1500, 4000], "status": "Critical", "interpretation": "Severe mold/insect infestation, high mycotoxin risk"},
+      {"range_ppm": [4000, 10000], "status": "Emergency", "interpretation": "Extreme spoilage, grain likely unsalvageable"}
+    ]
+  },
+  "harrington_rules": {
+    "rule_1": "For each 1% decrease in seed moisture content, storage life approximately doubles (valid 5-14% MC range).",
+    "rule_2": "For each 5.6C (10F) decrease in storage temperature, storage life approximately doubles (valid 0-50C range).",
+    "hundred_rule": "Temperature (F) + Relative Humidity (%) should sum to less than 100 for safe seed storage."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl -sL https://raw.githubusercontent.com/iffat336/seed-digital-twin-demo/main/app.py -o /Users/usama/Desktop/test/app.py)",
+      "Bash(gh api repos/iffat336/seed-digital-twin-demo/git/trees/main?recursive=1 --jq '.tree[].path')",
+      "Bash(curl -sL https://api.github.com/repos/iffat336/seed-digital-twin-demo/git/trees/main?recursive=1)",
+      "Bash(python3 -c \"import sys,json; [print\\(f[''path'']\\) for f in json.load\\(sys.stdin\\).get\\(''tree'',[]\\)]\")",
+      "Bash(for file in .gitignore README.md data_simulator.py demo_prediction.py presentation_guide.md requirements.txt scaler.pkl surrogate_model.pkl surrogate_model.py)",
+      "Bash(do curl -sL \"https://raw.githubusercontent.com/iffat336/seed-digital-twin-demo/main/$file\" -o \"$file\")",
+      "Bash(echo \"Downloaded: $file\")",
+      "Bash(done)",
+      "WebFetch(domain:www.co2meter.com)",
+      "WebFetch(domain:www.ars.usda.gov)",
+      "WebFetch(domain:aravind-j.github.io)",
+      "WebFetch(domain:onlinelibrary.wiley.com)",
+      "WebFetch(domain:www.chegg.com)",
+      "WebFetch(domain:pmc.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:grain-aeration.com)",
+      "WebFetch(domain:charlesdelahunt.github.io)",
+      "WebFetch(domain:www.fao.org)",
+      "WebFetch(domain:eagri.org)",
+      "WebFetch(domain:www.seedtest.org)",
+      "WebFetch(domain:www.ndsu.edu)",
+      "WebFetch(domain:rdrr.io)",
+      "Bash(pip install scipy openpyxl)",
+      "Bash(python -c \"from src.data_simulator import generate_scientific_data; generate_scientific_data\\(\\)\")"
+    ]
+  }
+}
