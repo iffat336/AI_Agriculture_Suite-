@@ -23,10 +23,14 @@ disease = st.Page("pages/7_disease_detection.py", title="Disease Detective", ico
 # --- Crop Logistics ---
 logistics = st.Page("pages/8_crop_logistics.py", title="Crop Logistics", icon="🚜")
 
+# --- Urban Dynamics ---
+urban = st.Page("pages/9_urban_planning.py", title="Urban Digital Twin", icon="🏙️")
+
 pg = st.navigation(
     {
         "Material Mechanics (Flagship)": [dashboard, batch, sensitivity],
         "Research Productivity": [agribot, disease],
+        "Urban Dynamics": [urban],
         "Crop Logistics": [logistics],
         "Reference": [seed_db, model_perf],
     }
